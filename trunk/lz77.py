@@ -39,8 +39,7 @@ def decompress(compressed_data):
 
     for d in compressed_data:
         if d["length"] != 0:
-            for i in xrange(d["length"]):
-                decompressed_string += decompressed_string[-d["offset"]]
+            decompressed_string = _lz77.back_copy(decompressed_string, d["length"], d["offset"])
         decompressed_string += d["symbol"]
 
     return decompressed_string

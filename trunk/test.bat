@@ -6,3 +6,6 @@ lzss.py
 sfc.py
 bwt.py
 huffman.py
+mtf.py
+aplib.py
+brieflz.py

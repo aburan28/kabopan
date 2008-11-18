@@ -42,3 +42,13 @@ def find_longest_match(s, sub):
 assert find_longest_match("abc","a") == (3,1)
 assert find_longest_match("abc","d") == (0,0)
 assert find_longest_match("abcab","ab") == (2,2)
+
+def back_copy(string, length, offset):
+    for i in xrange(length):
+        string += string[-offset]
+    return string
+    
+assert back_copy("a",1,1) == "aa"
+assert back_copy("ab",2,2) == "abab"
+assert back_copy("duplicate me please",9,19) == "duplicate me pleaseduplicate"
+
