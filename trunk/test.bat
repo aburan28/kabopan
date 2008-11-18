@@ -9,3 +9,4 @@ huffman.py
 mtf.py
 aplib.py
 brieflz.py
+rle.py
