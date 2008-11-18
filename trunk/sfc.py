@@ -74,4 +74,6 @@ assert tree_test == {'left0': {'symbol': 'a'},
                                 'right1': {'left0': {'symbol': 'r'},
                                            'right1': {'left0': {'symbol': 'c'},
                                                       'right1': {'symbol': 'd'}}}}}
-assert _encoding.generate_codes(tree_test) == ['a', '0', 'b', '10', 'r', '110', 'c', '1110', 'd', '1111']
+
+assert _encoding.generate_codes(tree_test) == [['a', '0'], ['b', '10'], ['r', '110'],
+                                               ['c', '1110'], ['d', '1111']]

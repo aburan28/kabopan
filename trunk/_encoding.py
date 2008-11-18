@@ -3,19 +3,18 @@
 #Kabopan (http://kabopan.corkami.com) public domain, readable, working pseudocode-style python
 #Ange Albertini
 
-def generate_codes(node, current_code=""):
+def generate_codes(node, codes = [], current_code=""):
     """walk the encoding tree and generates code for symbol (in leaves)"""
-    codes = []
     if "symbol" in node:
-        return node["symbol"], current_code
+        return codes + [[node["symbol"], current_code]]
     else:
-        codes.extend(generate_codes(node["left0"], current_code + "0"))
-        codes.extend(generate_codes(node["right1"], current_code + "1"))
+        codes = generate_codes(node["left0"], codes, current_code + "0")
+        codes = generate_codes(node["right1"], codes, current_code + "1")
     return codes
 
 assert generate_codes({'left0': {'symbol': 'a', 'weight': 1},
                      'right1': {'symbol': 'b', 'weight': 1},
-                     'weight': 2}) ==["a", "0", "b", "1"]
+                     'weight': 2}) ==[["a", "0"], ["b", "1"]]
 
 def get_weights_and_symbols(data):
     stats = [{"symbol": chr(i), "weight": 0} for i in range(256)]
