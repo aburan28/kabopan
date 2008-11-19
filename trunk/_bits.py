@@ -129,6 +129,9 @@ class decompress:
         self.__tag <<= 1
         return bit
 
+    def is_end(self):
+        return self.__offset == len(self.__in) and self.__curbit == 1
+        
     def read_byte(self):
         """read next byte from the stream"""
         if type(self.__in) == str:

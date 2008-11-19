@@ -59,7 +59,7 @@ assert generate_sfc_tree([{"symbol":"a", "weight":2},
                                                            'right1': {'symbol': 'b'}}
 
 def encode(data_to_compress):
-    stats = _encoding.get_weights_and_symbols(data_to_compress)    
+    stats = _encoding.get_weights_and_symbols(data_to_compress)
 
     stats = sorted(stats, key = lambda x:x["weight"], reverse = True)
 
@@ -67,13 +67,17 @@ def encode(data_to_compress):
 
     return tree
 
-
-tree_test = encode("abracadabra")
-assert tree_test == {'left0': {'symbol': 'a'},
+test_string = "abracadabra"
+test_tree = encode(test_string)
+assert test_tree == {'left0': {'symbol': 'a'},
                      'right1': {'left0': {'symbol': 'b'},
                                 'right1': {'left0': {'symbol': 'r'},
                                            'right1': {'left0': {'symbol': 'c'},
                                                       'right1': {'symbol': 'd'}}}}}
 
-assert _encoding.generate_codes(tree_test) == [['a', '0'], ['b', '10'], ['r', '110'],
-                                               ['c', '1110'], ['d', '1111']]
+test_codes = _encoding.generate_codes(test_tree)
+assert  test_codes == {'a':'0', 'b':'10', 'r':'110',
+                                               'c':'1110', 'd':'1111'}
+test_encoding = _encoding.encode_string(test_codes, test_string)
+assert test_encoding == 'Y\xcfX'
+assert _encoding.decode_string(test_tree, test_encoding) == test_string
