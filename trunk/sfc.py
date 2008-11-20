@@ -76,8 +76,7 @@ assert test_tree == {'left0': {'symbol': 'a'},
                                                       'right1': {'symbol': 'd'}}}}}
 
 test_codes = _encoding.generate_codes(test_tree)
-assert  test_codes == {'a':'0', 'b':'10', 'r':'110',
-                                               'c':'1110', 'd':'1111'}
-test_encoding = _encoding.encode_string(test_codes, test_string)
+assert test_codes == {'a':'0', 'b':'10', 'r':'110', 'c':'1110', 'd':'1111'}
+test_encoding = _encoding.encode(test_codes, test_string)
 assert test_encoding == 'Y\xcfX'
-assert _encoding.decode_string(test_tree, test_encoding) == test_string
+assert _encoding.decode(test_tree, test_encoding) == test_string

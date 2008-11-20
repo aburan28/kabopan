@@ -76,6 +76,6 @@ assert test_tree == {'left0': {'symbol': 'a', 'weight': 5},
 test_codes = _encoding.generate_codes(test_tree)
 assert test_codes == {'a':'0', 'c':'100', 'd':'101', 'b':'110', 'r':'111'}
 
-encoded_string = _encoding.encode_string(test_codes, "abracadabra")
+encoded_string = _encoding.encode(test_codes, "abracadabra")
 assert encoded_string == 'n\x8a\xdc'
-assert _encoding.decode_string(test_tree, encoded_string) == test_string
+assert _encoding.decode(test_tree, encoded_string) == test_string

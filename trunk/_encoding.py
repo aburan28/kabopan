@@ -31,18 +31,18 @@ assert get_weights_and_symbols("abababbc") == [{"symbol":"a","weight":3},
                                                {"symbol":"b","weight":4},
                                                {"symbol":"c","weight":1},]
 
-def encode_string(codes, string):
+def encode(codes, data_to_encode):
     import _bits
     comp = _bits.compress(1)
-    for char in string:
+    for char in data_to_encode:
         comp.write_bitstring(codes[char])
     result = comp.getdata()
     return result
 
-def decode_string(tree_root, string):
+def decode(tree_root, data_to_decode):
     result = ""
     import _bits
-    decomp = _bits.decompress(string, 1)
+    decomp = _bits.decompress(data_to_decode, 1)
     while not decomp.is_end():
         node = tree_root
         while "symbol" not in node:
