@@ -1,0 +1,30 @@
+#summary Algorithms in this project
+#labels featured
+
+ * *lossless compression*
+  * Lempel Ziv 77
+   * Lempel Ziv Storer Szymanski
+   * BriefLZ
+   * aPLib
+   * ~~JCALG1~~
+  * Lempel Ziv 78
+   * Lempel Ziv Welch
+  * Run-length encoding
+ * *transform*
+  * Burrows Wheeler
+  * Move to front
+ * *entropy encoding*
+  * Shannon Fano
+  * Huffman
+  * ~~Range~~
+  * ~~Arithmetic~~
+
+ * *future*
+  * algorithms
+   * cryptography
+    * hashes
+    * ciphers
+   * cyclic redundancy checks
+  * formats
+   * archive
+   * pictures
