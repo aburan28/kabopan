@@ -8,7 +8,7 @@
    * [http://code.google.com/p/kabopan/source/browse/trunk/aplib.py aPLib]
    * ~~JCALG1~~
   * [http://code.google.com/p/kabopan/source/browse/trunk/lz78.py Lempel Ziv 78]
-   *[http://code.google.com/p/kabopan/source/browse/trunk/lz78.py  Lempel Ziv Welch]
+   * [http://code.google.com/p/kabopan/source/browse/trunk/lzw.py Lempel Ziv Welch]
   * [http://code.google.com/p/kabopan/source/browse/trunk/rle.py Run-length encoding]
  * *transform*
   * [http://code.google.com/p/kabopan/source/browse/trunk/bwt.py Burrows Wheeler]
