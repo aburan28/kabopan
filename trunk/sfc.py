@@ -35,7 +35,7 @@ assert split_weights([8,7,1]) == 0
 assert split_weights([1,1,8]) == 1
 
 
-def generate_sfc_tree(elements):
+def generate_tree(elements):
     """generate a shannon fano tree out of a list of dictionaries of symbols and their weights"""
     if len(elements) == 1:
         node = {"symbol":elements[0]["symbol"]} # nothing to split - it's a leaf
@@ -45,16 +45,16 @@ def generate_sfc_tree(elements):
 
         left_half, right_half = split(elements, half_weight_index)
 
-        left_node = generate_sfc_tree(left_half)
-        right_node = generate_sfc_tree(right_half)
+        left_node = generate_tree(left_half)
+        right_node = generate_tree(right_half)
 
         node = {"left0": left_node, "right1": right_node}
 
     return node
 
 
-assert generate_sfc_tree([{"symbol":"a", "weight":35}]) == {"symbol":"a"}
-assert generate_sfc_tree([{"symbol":"a", "weight":2},
+assert generate_tree([{"symbol":"a", "weight":35}]) == {"symbol":"a"}
+assert generate_tree([{"symbol":"a", "weight":2},
                           {"symbol":"b", "weight":2}]) == {'left0': {'symbol': 'a'},
                                                            'right1': {'symbol': 'b'}}
 
@@ -63,7 +63,7 @@ def encode(data_to_compress):
 
     stats = sorted(stats, key = lambda x:x["weight"], reverse = True)
 
-    tree = generate_sfc_tree(stats)
+    tree = generate_tree(stats)
 
     return tree
 

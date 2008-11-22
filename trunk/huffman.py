@@ -21,7 +21,7 @@ def pop_entry(stats):
 assert pop_entry([{"symbol":"a", "weight" : 15}]) == {"symbol":"a", "weight":15}
 assert pop_entry([{"node":"this"}]) == "this"
 
-def generate_huffman_tree(data_to_compress):
+def generate_tree(data_to_compress):
 
     # stats first contains symbols and their weights,
     # then parent nodes and their weights as well, while the tree is built
@@ -57,12 +57,12 @@ def generate_huffman_tree(data_to_compress):
     return root_node
 
 
-tree_test = generate_huffman_tree("a")
+tree_test = generate_tree("a")
 assert tree_test == {'symbol': 'a', 'weight': 1}
 assert _encoding.generate_codes(tree_test) == {"a":""}
 
 test_string = "abracadabra"
-test_tree = generate_huffman_tree(test_string)
+test_tree = generate_tree(test_string)
 assert test_tree == {'left0': {'symbol': 'a', 'weight': 5},
                      'right1': {'left0': {'left0': {'symbol': 'c', 'weight': 1},
                                           'right1': {'symbol': 'd', 'weight': 1},
