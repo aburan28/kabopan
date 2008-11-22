@@ -2,7 +2,7 @@
 #labels featured
 
  * *lossless compression*
-  * Lempel Ziv 77
+  * [http://code.google.com/p/kabopan/source/browse/trunk/lz77.py Lempel Ziv 77]
    * Lempel Ziv Storer Szymanski
    * BriefLZ
    * aPLib
