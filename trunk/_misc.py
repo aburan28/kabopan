@@ -5,6 +5,13 @@
 
 #todo : a lot of cleaning is likely required
 
+def gcd(a,b):    
+    return gcd(b, a % b) if b != 0 else a
+
+def lcm(a,b):
+    return a * b / gcd(a,b)
+
+
 def getbinlen(value):
     """return the bit length of an integer"""
     result = 0
@@ -58,7 +65,16 @@ def getbinstr(value):
 assert getbinstr(0) == "0"
 assert getbinstr(8) == "1000"
 
+def getvaluefrombinarystring(string):
+    result = 0
+    for char in string:
+        bit = 1 if char == "1" else 0
+        result = (result << 1) + bit
+    return result
 
+assert getvaluefrombinarystring("1000") == 8
+assert getvaluefrombinarystring("001000") == 8
+    
 def countmissing(value, modulo):
     """returns x > 0 so that (value + x) % modulo = 0 (useful to write leading zeroes)"""
     result = value % modulo
@@ -114,10 +130,18 @@ def int2lebin(value, size):
         result = result + chr((value >> (8 * i)) & 0xFF )
     return result
 
-assert int2lebin(0,1) == "\x00"
+assert int2lebin(1,2) == '\x01\x00'
 assert int2lebin(65535,2) == "\xff\xff"
 assert int2lebin(65535,3) == "\xff\xff\x00"
 
+def int2bebin(value, size):
+    """ouputs value in binary, as big-endian"""
+    result = ""
+    for i in xrange(size):
+        result = chr((value >> (8 * i)) & 0xFF ) + result
+    return result
+
+assert int2bebin(1,2) == '\x00\x01'
 
 def md5(s):
     """returns hex digest of the md5 of the string"""

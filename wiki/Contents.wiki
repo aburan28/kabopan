@@ -22,6 +22,8 @@
   * [http://code.google.com/p/kabopan/source/browse/trunk/huffman.py Huffman]
   * Range
   * Arithmetic
+ * *encoding*
+  * [http://code.google.com/p/kabopan/source/browse/trunk/base.py Base16/Base32/Base64]
  * *cyclic redundancy check*
  * *hash*
  * *cipher*
