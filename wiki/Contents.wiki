@@ -1,4 +1,4 @@
-#summary Algorithms in this project
+﻿#summary Algorithms in this project
 #labels featured
 
  * *lossless compression*
@@ -17,6 +17,9 @@
  * *transform*
   * [http://code.google.com/p/kabopan/source/browse/trunk/bwt.py Burrows Wheeler]
   * [http://code.google.com/p/kabopan/source/browse/trunk/mtf.py Move to front]
+ * *universal encoding*
+  * elias gamma, delta, omega
+  * fibonacci
  * *entropy encoding*
   * [http://code.google.com/p/kabopan/source/browse/trunk/sfc.py Shannon Fano]
   * [http://code.google.com/p/kabopan/source/browse/trunk/huffman.py Huffman]
@@ -25,5 +28,14 @@
  * *encoding*
   * [http://code.google.com/p/kabopan/source/browse/trunk/base.py Base16/Base32/Base64]
  * *cyclic redundancy check*
- * *hash*
+ * *checksum*
+  * flechter32
+  * adler32
+ * *cryptographic hash/message digest*
  * *cipher*
+ * *substitution cipher*
+  * alberti cipher disk
+  * bellaso, first and second
+  * vigenere
+  * rot5, rot13, rot18, rot47
+  * playfair
