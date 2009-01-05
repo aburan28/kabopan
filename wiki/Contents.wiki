@@ -18,6 +18,7 @@
   * [http://code.google.com/p/kabopan/source/browse/trunk/bwt.py Burrows Wheeler]
   * [http://code.google.com/p/kabopan/source/browse/trunk/mtf.py Move to front]
  * *universal encoding*
+  * unary
   * elias gamma, delta, omega
   * fibonacci
  * *entropy encoding*
@@ -32,10 +33,38 @@
   * flechter32
   * adler32
  * *cryptographic hash/message digest*
- * *cipher*
+  * Haval
+  * MD2, MD4, MD5, MD6
+  * RIPEMD
+  * SHA-0, SHA-1, SHA-2
+  * Tiger
+  * WHIRLPOOL
+ * *Message Authentication Code*
+ * *Pseudorandom Number Generator*
+  * Mersenne twister
+ * *stream cipher*
+  * RC4
+ * *block cipher*
+  * Feistel Network
+  * Lucifer
+  * Data Encryption Standard - DES
+  * Triple DES
+  * Rijndael - AES
+  * Serpent
+  * Blowfish
+  * Twofish
+  * Threefish
+  * Tiny Encryption Algorithm - TEA
+  * XTEA
+  * XXTEA
+  * RC2, RC5, RC6
+  * Skein
  * *substitution cipher*
   * alberti cipher disk
-  * bellaso, first and second
+  * bellaso first and second
   * vigenere
   * rot5, rot13, rot18, rot47
   * playfair
+  * affine
+  * ascii85
+  * uuencode, xxencode
