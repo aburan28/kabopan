@@ -3,7 +3,7 @@
 #Jorgen Ibsen, http://www.ibsensoftware.com/
 #
 #Kabopan (http://kabopan.corkami.com) public domain, readable, working pseudocode-style python
-#Ange Albertini
+
 
 #todo working but need cleaning and maybe bugfixing
 

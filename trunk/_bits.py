@@ -1,7 +1,7 @@
 #classes for variable-sized auto-reloading tag, sliding window, compression and decompression algorithms
 #
 #Kabopan (http://kabopan.corkami.com) public domain, readable, working pseudocode-style python
-#Ange Albertini
+
 
 #todo : working, but needs a lot of cleaning, and bugfixing
 

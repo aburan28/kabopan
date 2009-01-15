@@ -4,7 +4,7 @@
 #James A. Storer, Thomas G. Szymanski, 1982
 #
 #Kabopan (http://kabopan.corkami.com) public domain, readable, working pseudocode-style python
-#Ange Albertini
+
 
 import _lz77
 

@@ -1,7 +1,7 @@
 #Useful Functions for sliding window compression algorithms, such as LZ77
 #
 #Kabopan (http://kabopan.corkami.com) public domain, readable, working pseudocode-style python
-#Ange Albertini
+
 
 
 #TODO: proper longest match implementation

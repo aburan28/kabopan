@@ -4,7 +4,7 @@
 #J. L. Bentley, D. D. Sleator, R. E. Tarjan, V. K. Wei, 1986
 #
 #Kabopan (http://kabopan.corkami.com) public domain, readable, working pseudocode-style python
-#Ange Albertini
+
 
 def move_to_front(list, offset):
     """move to the front of the list the offset-th element"""

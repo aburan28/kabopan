@@ -3,7 +3,7 @@
 #M.Burrows, D.J. Wheeler, 1994
 #
 #Kabopan (http://kabopan.corkami.com) public domain, readable, working pseudocode-style python
-#Ange Albertini
+
 
 def rotate_string(string, count):
     """rotate left a string"""

@@ -1,7 +1,7 @@
 #Useful Functions for entropy encoding algorithms, such as Shannon Fano or Huffman
 #
 #Kabopan (http://kabopan.corkami.com) public domain, readable, working pseudocode-style python
-#Ange Albertini
+
 
 def generate_codes(node, codes=None, current_code=""):
     """walk the encoding tree and generates code for symbol (in leaves)"""
