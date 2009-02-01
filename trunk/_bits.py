@@ -9,11 +9,30 @@ import _misc
 
 debug = False
 
+def bits(string, bit7_first=True):
+    for char in string:
+        char_value = ord(char)
+        for current_bit in range(8):
+            #by default, we read the most significant bit first
+            bit_index = 7 - current_bit if bit7_first else current_bit
+            boolean = ((char_value & (1 <<  bit_index)) != 0)
+
+            yield boolean
+
+
+def reverse(integer, width):
+    reversed = 0
+    for i in range(width):
+        reversed |= ((integer >> i) & 1) << (width - 1 - i)
+    return reversed
+
+
 class compress:
     """bit machine for variable-sized auto-reloading tag compression"""
     def __init__(self, tagsize):
         """tagsize is the number of bytes that takes the tag"""
         self.out = ""
+
         self.__tagsize = tagsize
         self.__tag = 0
         self.__tagoffset = -1
@@ -23,7 +42,7 @@ class compress:
 
 
     def getdata(self):
-        """builds an output string of what's currently compressed: 
+        """builds an output string of what's currently compressed:
         currently output bit + current tag content"""
         tagstr = _misc.int2lebin(self.__tag, self.__tagsize)
         return _misc.modifystring(self.out, tagstr, self.__tagoffset)
@@ -75,11 +94,7 @@ class compress:
         self.write_bit(0)
         return
 
-        
-c = compress(1);c.write_bit(1); assert c.getdata() == "\x80"
-c = compress(2);c.write_bit(1); assert c.getdata() == "\x00\x80"
-c = compress(2);c.write_variablenumber(109); assert c.getdata() == "`\xdf"
-c = compress(2);c.write_fixednumber(109,9); assert c.getdata() == '\x806'
+
 
 # unused debug visual stuff
 
@@ -131,7 +146,7 @@ class decompress:
 
     def is_end(self):
         return self.__offset == len(self.__in) and self.__curbit == 1
-        
+
     def read_byte(self):
         """read next byte from the stream"""
         if type(self.__in) == str:
@@ -176,11 +191,3 @@ class decompress:
         else:
             self.out += value
         return False
-
-#c = compress(2);c.write_bit(1);c.write_fixednumber(15,5);c.write_variablenumber(2049);
-#test = c.getdata()
-test = 'U\xbd`U'
-d = decompress(test, 2)
-assert d.read_bit() == 1
-assert d.read_fixednumber(5) == 15
-assert d.read_variablenumber() == 2049
