@@ -15,9 +15,6 @@ def generate_codes(node, codes=None, current_code=""):
         generate_codes(node["right1"], codes, current_code + "1")
     return codes
 
-assert generate_codes({'left0': {'symbol': 'a', 'weight': 1},
-                     'right1': {'symbol': 'b', 'weight': 1},
-                     'weight': 2}) == {'a': '0', 'b': '1'}
 
 def get_weights_and_symbols(data):
     stats = [{"symbol": chr(i), "weight": 0} for i in range(256)]
@@ -26,10 +23,6 @@ def get_weights_and_symbols(data):
     stats = [i for i in stats if i["weight"] > 0]
     return stats
 
-assert get_weights_and_symbols("a") == [{"symbol":"a","weight":1}]
-assert get_weights_and_symbols("abababbc") == [{"symbol":"a","weight":3},
-                                               {"symbol":"b","weight":4},
-                                               {"symbol":"c","weight":1},]
 
 def encode(codes, data_to_encode):
     import _bits
@@ -53,3 +46,6 @@ def decode(tree_root, data_to_decode):
                 node = node["right1"]
         result += node["symbol"]
     return result
+    
+if __name__ == "__main__":
+    import _encoding_test
