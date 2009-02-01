@@ -82,4 +82,4 @@ class ripemd160(md5):
 
 
 if __name__ == "__main__":
-    import ripemd160_test
+    import test.ripemd160_test

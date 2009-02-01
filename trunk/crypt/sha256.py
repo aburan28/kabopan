@@ -27,4 +27,4 @@ class sha256(sha512):
         return self.rxrxs(x, 17, 19, 10)
 
 if __name__ == "__main__":
-    import sha256_test
+    import test.sha256_test

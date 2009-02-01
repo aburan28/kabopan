@@ -90,4 +90,4 @@ class md2(merkledamgaard):
 
 
 if __name__ == "__main__":
-    import md2_test
+    import test.md2_test

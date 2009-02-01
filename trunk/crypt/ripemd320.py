@@ -43,4 +43,4 @@ class ripemd320(ripemd160):
         return a, b, c, d, e, A, B, C, D, E
 
 if __name__ == "__main__":
-    import ripemd320_test
+    import test.ripemd320_test

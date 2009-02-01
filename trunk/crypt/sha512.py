@@ -64,4 +64,4 @@ class sha512(md4):
 
 
 if __name__ == "__main__":
-    import sha512_test
+    import test.sha512_test

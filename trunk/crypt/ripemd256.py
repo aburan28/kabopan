@@ -38,4 +38,4 @@ class ripemd256(ripemd128):
         return a, b, c, d, A, B, C, D
 
 if __name__ == "__main__":
-    import ripemd256_test
+    import test.ripemd256_test

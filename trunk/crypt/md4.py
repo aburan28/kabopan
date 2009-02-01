@@ -88,4 +88,4 @@ class md4(Hash.merkledamgaard):
 
 
 if __name__ == "__main__":
-    import md4_test
+    import test.md4_test

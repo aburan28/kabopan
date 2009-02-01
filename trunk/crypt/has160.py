@@ -56,4 +56,4 @@ class has160(md4):
         return [a, b, c, d, e]
 
 if __name__ == "__main__":
-    import has160_test
+    import test.has160_test

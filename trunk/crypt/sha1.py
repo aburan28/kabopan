@@ -15,4 +15,4 @@ class sha1(sha0):
         return words
 
 if __name__ == "__main__":
-    import sha1_test
+    import test.sha1_test

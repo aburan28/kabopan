@@ -37,4 +37,4 @@ class sha0(md4):
         return [a, b, c, d, e]
 
 if __name__ == "__main__":
-    import sha0_test
+    import test.sha0_test

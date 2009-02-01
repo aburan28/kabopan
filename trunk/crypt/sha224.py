@@ -17,4 +17,4 @@ class sha224(sha256):
 
 
 if __name__ == "__main__":
-    import sha224_test
+    import test.sha224_test

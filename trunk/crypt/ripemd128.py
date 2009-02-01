@@ -56,4 +56,4 @@ class ripemd128(ripemd160):
 
 
 if __name__ == "__main__":
-    import ripemd128_test
+    import test.ripemd128_test

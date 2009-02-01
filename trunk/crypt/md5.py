@@ -52,4 +52,4 @@ class md5(md4):
 
 
 if __name__ == "__main__":
-    import md5_test
+    import test.md5_test

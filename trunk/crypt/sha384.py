@@ -17,4 +17,4 @@ class sha384(sha512):
 
 
 if __name__ == "__main__":
-    import sha384_test
+    import test.sha384_test
