@@ -1,7 +1,7 @@
 #
 #Kabopan (http://kabopan.corkami.com) public domain, readable, working pseudocode-style python
 
-from rot import *
+from code.rot import *
 
 assert ASCII33_126  == "!\"#$%&'()*+,-./" + DIGITS  + ":;<=>?@" + ALPHABET  + \
     "[\\]^_`" + ALPHABET_LOWERCASE + "{|}~"

@@ -82,4 +82,4 @@ def decrypt_mode2(plaintext, start_position):
 
 
 if __name__ == "__main__":
-    import alberti_test
+    import test.alberti_test

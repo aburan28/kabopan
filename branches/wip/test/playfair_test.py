@@ -1,7 +1,7 @@
 #
 #Kabopan (http://kabopan.corkami.com) public domain, readable, working pseudocode-style python
 
-from playfair import *
+from code.playfair import *
 
 assert encode("Hide the gold in the tree stump", "PLAYFAIR EXAMPLE") == "BMNDZBXDKYBEJVDMUIXMMNUVIF"
 

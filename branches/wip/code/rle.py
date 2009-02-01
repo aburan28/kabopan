@@ -28,4 +28,4 @@ def decompress(compressed_data):
 
 
 if __name__ == "__main__":
-    import rle_test
+    import test.rle_test

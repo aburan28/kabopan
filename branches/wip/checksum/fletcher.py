@@ -34,4 +34,4 @@ def Adler32(data_to_checksum):
 
 
 if __name__ == "__main__":
-    import fletcher_test
+    import test.fletcher_test

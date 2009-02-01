@@ -169,4 +169,4 @@ class decompress(_bits.decompress):
         return self.out, self.getoffset()
 
 if __name__ == "__main__":
-    import aplib_test
+    import test.aplib_test

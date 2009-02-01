@@ -95,4 +95,4 @@ def decode(ciphertext, key):
 
 
 if __name__ == "__main__":
-    import playfair_test
+    import test.playfair_test

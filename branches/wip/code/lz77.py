@@ -40,4 +40,4 @@ def decompress(compressed_data):
 
 
 if __name__ == "__main__":
-    import lz77_test
+    import test.lz77_test

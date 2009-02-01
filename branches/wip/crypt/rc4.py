@@ -30,4 +30,4 @@ def crypt(key, message):
 
 
 if __name__ == "__main__":
-    import rc4_test
+    import test.rc4_test

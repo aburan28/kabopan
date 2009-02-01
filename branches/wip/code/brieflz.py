@@ -83,4 +83,4 @@ class decompress(_bits.decompress):
 
 
 if __name__ == "__main__":
-    import brieflz_test
+    import test.brieflz_test

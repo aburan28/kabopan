@@ -1,7 +1,7 @@
 #
 #Kabopan (http://kabopan.corkami.com) public domain, readable, working pseudocode-style python
 
-from crc import *
+from checksum.crc import *
 
 
 assert or_all ([1, 1 << 31]) == 0x80000001

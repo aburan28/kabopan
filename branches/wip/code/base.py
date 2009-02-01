@@ -158,4 +158,4 @@ def decode_base16(data):
 
 
 if __name__ == "__main__":
-    import base_test
+    import test.base_test

@@ -26,4 +26,4 @@ def caesar_decode(ciphertext):
     return substitute(ciphertext, ALPHABET, lambda x: x - 3)
 
 if __name__ == "__main__":
-    import rot_test
+    import test.rot_test

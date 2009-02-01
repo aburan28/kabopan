@@ -19,4 +19,4 @@ def vigenere(plaintext, key):
 
 
 if __name__ == "__main__":
-    import vigenere_test
+    import test.vigenere_test

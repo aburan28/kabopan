@@ -44,4 +44,4 @@ def decompress(compressed_data):
 
 
 if __name__ == "__main__":
-    import lszz_test
+    import test.lszz_test

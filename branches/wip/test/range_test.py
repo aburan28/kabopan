@@ -1,7 +1,7 @@
 #
 #Kabopan (http://kabopan.corkami.com) public domain, readable, working pseudocode-style python
 
-from range import *
+from code.range import *
 
 assert common_string(0.123,0.125) == "0.124"
 

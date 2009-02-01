@@ -29,4 +29,4 @@ def decode(ciphertext, alphabet, increment, multiplier):
 
 
 if __name__ == "__main__":
-    import affine_test
+    import test.affine_test

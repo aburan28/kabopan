@@ -74,4 +74,4 @@ def decode(target):
     return result
 
 if __name__ == "__main__":
-    import ascii85_test
+    import test.ascii85_test

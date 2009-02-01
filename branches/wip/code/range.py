@@ -87,4 +87,4 @@ Loop_until_the_last_symbol_output
 """
 
 if __name__ == "__main__":
-    import range_test
+    import test.range_test
