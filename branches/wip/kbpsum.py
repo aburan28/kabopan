@@ -7,20 +7,21 @@ try:
 except:
     pass
 
-import crc
+import checksum.crc
 import crypt.has160
 import crypt.md2, crypt.md4, crypt.md5
 import crypt.sha0, crypt.sha1, crypt.sha224, crypt.sha256, crypt.sha384, crypt.sha512
 import crypt.ripemd128, crypt.ripemd160, crypt.ripemd256, crypt.ripemd320
+import crypt.tiger, crypt.tiger128, crypt.tiger160, crypt.tiger2
 
 digesttest = lambda m, s:m.compute(s).hexdigest()
 
 families = [
-    "crc", "has", "md", "ripemd", "sha",
-    #"adler", "flechter", "gost", "haval", "lm", "panama", "tiger", "whirlpool", "snefru",
+    "crc", "has", "md", "ripemd", "sha", "tiger", 
+    #"adler", "flechter", "gost", "haval", "lm", "panama", "whirlpool", "snefru",
     ]
 algorithms = {
-    "crc32_ieee":crc.crc32_ieee_hexhash,
+    "crc32_ieee":checksum.crc.crc32_ieee_hexhash,
     "has-160":lambda x:crypt.has160.has160().compute(x).hexdigest(),
     "md2":lambda x:crypt.md2.md2().compute(x).hexdigest(),
     "md4":lambda x:crypt.md4.md4().compute(x).hexdigest(),
@@ -35,6 +36,10 @@ algorithms = {
     "sha-256"   :lambda x:crypt.sha256.sha256().compute(x).hexdigest(),
     "sha-384"   :lambda x:crypt.sha384.sha384().compute(x).hexdigest(),
     "sha-512"   :lambda x:crypt.sha512.sha512().compute(x).hexdigest(),
+    "tiger"   :lambda x:crypt.tiger.tiger().compute(x).hexdigest(),
+    "tiger2"   :lambda x:crypt.tiger2.tiger2().compute(x).hexdigest(),
+    "tiger128"   :lambda x:crypt.tiger128.tiger128().compute(x).hexdigest(),
+    "tiger160"   :lambda x:crypt.tiger160.tiger160().compute(x).hexdigest(),
     #"adler32":_,
     #"flechter16":_,
     #"flechter32":_,
@@ -43,8 +48,6 @@ algorithms = {
     #"panama":_,
     #"lm":_,
     #"snefru":_,
-    #"tiger":_,
-    #"tiger2":_,
     #"whirlpool":_,
     }
 Help = "Kabopan checksum calculator\n"

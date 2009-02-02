@@ -12,4 +12,7 @@ ripemd160
 ripemd128
 ripemd256
 ripemd320
-
+tiger
+tiger128
+tiger160
+tiger2

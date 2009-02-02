@@ -1,7 +1,7 @@
 #
 #Kabopan (http://kabopan.corkami.com) public domain, readable, working pseudocode-style python
 
-from tiger2 import *
+from crypt.tiger2 import *
 from _misc import test_vector_strings, ass
 import sys
 
@@ -14,4 +14,4 @@ test_vectors = [
     0xEA9AB6228CEE7B51B77544FCA6066C8CBB5BBAE6319505CD,
     0xD85278115329EBAA0EEC85ECDC5396FDA8AA3A5820942FFF]
 
-ass(test_vectors, [hash(s) for s in test_vector_strings], "test vectors")
+ass(test_vectors, [tiger2().compute(s).digest() for s in test_vector_strings], "test vectors")

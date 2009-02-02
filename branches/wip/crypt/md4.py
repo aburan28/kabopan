@@ -22,6 +22,7 @@ class md4(Hash.merkledamgaard):
         hex = "0123456789ABCDEF"
         IVhex = hex + hex[::-1]
         self.IVs = DWORDS(struct.unpack("<4L", hex2bin(IVhex)))
+        self.pad_bit_7 = True
 
         self.functions = [self.f, self.g, self.h]
 
@@ -50,7 +51,7 @@ class md4(Hash.merkledamgaard):
 
 
     def pad(self, message):
-        return pad_0_1_size(message, self.block_length, self.padding_size_encoding_length, self.padding_big_endianness)
+        return pad_0_1_size(message, self.block_length, self.padding_size_encoding_length, self.padding_big_endianness, self.pad_bit_7)
 
 
     def compress(self, block, words):

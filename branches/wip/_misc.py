@@ -359,11 +359,12 @@ def pack32(number, bigendian=False):
 def pack(number, bigendian, width):
     return {32:pack32, 64:pack64, 128:pack128}[width](number, bigendian)
 
-def pad_0_1_size(message, alignment, sizelength, bigendian):
+def pad_0_1_size(message, alignment, sizelength, bigendian, pad_bit_7):        
+    pad_char = {True:"\x80", False: "\x01"}[pad_bit_7]
     """ pads 1 bit, then 0 bits until we have enough bits to store the length of the original message"""
     length = len(message)
     bitlength = length * 8
-    padding = "\x80"    # we have to add 1 bit so let's add 0x80 since we're working on byte-boundary block
+    padding = pad_char    # we have to add 1 bit so let's add 0x80 since we're working on byte-boundary block
     current_length = bitlength + 8  # we just added 8 bits
     needed_bits = (alignment - sizelength - current_length) % alignment   # we want to have a block length that
     padding += "\x00" * (needed_bits / 8)

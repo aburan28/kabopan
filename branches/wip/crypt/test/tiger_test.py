@@ -1,7 +1,7 @@
 #
 #Kabopan (http://kabopan.corkami.com) public domain, readable, working pseudocode-style python
 
-from tiger import *
+from crypt.tiger import *
 from _misc import test_vector_strings, ass
 
 IVs = [0x0123456789abcdef, 0xfedcba9876543210, 0xf096a5b4c3b2e187]
@@ -21,7 +21,7 @@ class test(tiger):
         assert [int(i) for i in self.IVs] == IVs
 test()
 
-ass(test_vectors[:1], [tiger().compute(s).digest() for s in test_vector_strings[:1]], "test vectors")
+ass(test_vectors, [tiger().compute(s).digest() for s in test_vector_strings], "test vectors")
 
 Ss_test = [
     [

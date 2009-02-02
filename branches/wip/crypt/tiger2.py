@@ -3,13 +3,12 @@
 
 """tiger2 is tiger, with sha-like padding (big-endian) instead of md4-like padding"""
 
-import tiger
+from tiger import *
 
-def hash(message):
-    return tiger.hash(message, tiger2=True)
-
-def hexhash(message):
-    return tiger.hexhash(message, tiger2=True)
+class tiger2(tiger):
+    def __init__(self):
+        tiger.__init__(self)
+        self.pad_bit_7 = True
 
 if __name__ == "__main__":
-    import tiger2_test
+    import test.tiger2_test
