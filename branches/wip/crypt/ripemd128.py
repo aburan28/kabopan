@@ -51,8 +51,8 @@ class ripemd128(ripemd160):
 
     def combine(self, bhvs):
         a, b, c, d,A, B, C, D = bhvs
-        h0, h1, h2, h3 = list(self.ihvs)
-        return h1 + c + D, h2 + d + A, h3 + a + B, h0 + b + C
+        h0, h1, h2, h3 = self.ihvs
+        self.ihvs = h1 + c + D, h2 + d + A, h3 + a + B, h0 + b + C
 
 
 if __name__ == "__main__":

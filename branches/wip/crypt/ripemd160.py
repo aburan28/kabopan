@@ -77,8 +77,8 @@ class ripemd160(md5):
 
     def combine(self, bhvs):
         a, b, c, d, e, A, B, C, D, E = bhvs
-        h0, h1, h2, h3, h4 = list(self.ihvs)
-        return h1 + c + D, h2 + d + E, h3 + e + A, h4 + a + B, h0 + b + C
+        h0, h1, h2, h3, h4 = self.ihvs
+        self.ihvs = h1 + c + D, h2 + d + E, h3 + e + A, h4 + a + B, h0 + b + C
 
 
 if __name__ == "__main__":

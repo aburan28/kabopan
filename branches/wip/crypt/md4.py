@@ -73,10 +73,10 @@ class md4(Hash.merkledamgaard):
         return bhv
 
     def sum_combine(self, bhvs):
-        return [sum(i) for i in zip(self.ihvs, bhvs)]
+        self.ihvs = [sum(i) for i in zip(self.ihvs, bhvs)]
 
     def combine(self, *args):
-        return self.sum_combine(*args)
+        self.sum_combine(*args)
 
     def process_block(self, block):
         #compression
@@ -85,7 +85,7 @@ class md4(Hash.merkledamgaard):
         #rounds
         bhvs = self.rounds(words)
         #integration
-        self.ihvs = self.combine(bhvs)
+        self.combine(bhvs)
 
 
 if __name__ == "__main__":

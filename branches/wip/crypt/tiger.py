@@ -10,7 +10,6 @@ import _misc as m
 from md4 import *
 from _int import QWORD, BYTE, List
 
-#    magic_string = "Tiger - A Fast New Hash Function, by Ross Anderson and Eli Biham"
 import tiger_const
 
 class tiger(md4):
@@ -24,11 +23,10 @@ class tiger(md4):
         self.pad_bit_7 = False
 
         self.S = tiger_const.Ss_test
-
-        self.sbox = self.S
-        self.Sbox = self.S[::-1]
-        self.round_indexes = range(0, 8, 2) # even numbers
-        self.Round_indexes = range(1, 8, 2) # odd numbers
+        self.nb_pass = 3 # standard tiger uses 3 passes
+        self.sboxes = self.S
+        self.Sboxes = self.S[::-1]
+        #self.gen_const()
 
 
     def key_schedule(self, words):
@@ -57,45 +55,71 @@ class tiger(md4):
     def combine(self, bhvs): #: feed forward
         a, b, c = bhvs
         aa, bb, cc = self.ihvs
-        a, b, c = [
-            a ^ aa,
-            b - bb,
-            c + cc,
-            ]
-        return a, b, c
+        self.ihvs = a ^ aa, b - bb, c + cc
 
 
-    def round_(self, l, x, mul):
-        a, b, c = list(l)
-        c ^= x
-        ta = m.xor((sbox[c[7 - index]] for sbox, index in zip(self.sbox, self.round_indexes)), QWORD(0))
-        tb = m.xor((sbox[c[7 - index]] for sbox, index in zip(self.Sbox, self.Round_indexes)), QWORD(0))
-        a -= ta
-        b += tb
-        b *= mul
-        return a, b, c
+    def round_(self, bhvs, round_indexes, x, mul):
+        a, b, c = round_indexes
+        bhvs[c] ^= x
+        c = bhvs[c]
+        ta = m.xor((sbox[c[7 - index]] for sbox, index in zip(self.sboxes, [0, 2, 4, 6])), QWORD(0))
+        tb = m.xor((sbox[c[7 - index]] for sbox, index in zip(self.Sboxes, [1, 3, 5, 7])), QWORD(0))
+        bhvs[a] -= ta
+        bhvs[b] += tb
+        bhvs[b] *= mul
 
 
-    def pass_(self, bhvs, mul, words):
-        a, b, c = list(bhvs)
-        a, b, c = self.round_([a, b, c], words[0], mul)
-        b, c, a = self.round_([b, c, a], words[1], mul)
-        c, a, b = self.round_([c, a, b], words[2], mul)
-        a, b, c = self.round_([a, b, c], words[3], mul)
-        b, c, a = self.round_([b, c, a], words[4], mul)
-        c, a, b = self.round_([c, a, b], words[5], mul)
-        a, b, c = self.round_([a, b, c], words[6], mul)
-        b, c, a = self.round_([b, c, a], words[7], mul)
-        return a,b,c
+    def pass_(self, bhvs, pass_indexes, mul, words):
+        for p in range(8):
+            # same round, but with rotated indexes, and next word
+            self.round_(bhvs, pass_indexes << p , words[p], mul)
+
 
     def rounds(self, words):
-        a, b, c = list(self.ihvs)
-        a ,b, c = self.pass_([a, b, c], 5, words)
-        words = self.key_schedule(words)
-        c, a, b = self.pass_([c, a, b], 7, words)
-        words = self.key_schedule(words)
-        b, c, a = self.pass_([b, c, a], 9, words)
-        return a, b, c
+        bhvs = list(self.ihvs)
+        indexes = List(range(3))
+        for i in range(self.nb_pass):
+            multiplier = [5,7][i] if 0 <= i <= 1 else 9
+            self.pass_(bhvs, indexes >> i, multiplier, words)
+            words = self.key_schedule(words)
+        return bhvs
+
+    def gen_const(self):
+        nb_passes = 5
+        seed_string = "Tiger - A Fast New Hash Function, by Ross Anderson and Eli Biham"
+        words = m.as_words(seed_string, 512, 64, bigendian=True)
+        table = [list([DWORD(0) for i in range(1024)]) for j in range(2)]
+        for i in xrange(1024):
+            for j in xrange(8):
+                current_iteration = i * 8 + j
+                i_ = current_iteration / 1024
+                j_ = current_iteration % 1024
+                table[i_][j_] |= ((i & 0xFF) << j)
+                #print j_, i_, "%x" % ((i & 0xFF) << j), table[i_][j_]
+        abc = 2
+        for cnt in range(nb_passes):
+            for i in range(256):
+                for sb in xrange(0, 1024, 256):
+                    abc += 1
+                    if abc == 3:
+                        abc = 0
+                        
+#            out_index = [2, 1024]# 32
+            #in_index = [1024, 8]# 8
+#            table[
+        """
+              if(abc == 3)
+                {
+                  abc = 0;
+                  tiger_compress(tempstr, state);
+                }
+              for(col=0; col<8; col++) {
+                  byte tmp = table_ch[sb+i][col];
+                  table_ch[sb+i][col] = table_ch[sb+state_ch[abc][col]][col];
+                  table_ch[sb+state_ch[abc][col]][col] = tmp;
+                }
+            }  
+        }"""
 
 if __name__ == "__main__":
     import test.tiger_test
