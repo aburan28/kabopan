@@ -7,7 +7,8 @@ def get_variables(filename, variables):
     try:
         with open(filename, "rb") as f:
             pi = pickle.load(f)
-            return [pi[variable] for variable in variables]
+            #rebuilding the dictionary checks the actual existence of all variables
+            return dict([variable, pi[variable]] for variable in variables)
     except:
         return None
 

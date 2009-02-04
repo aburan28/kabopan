@@ -25,7 +25,7 @@ class sha512(md4):
             self.K = nroot_primes(0, 80, 3, 64)
             p.save_variables("sha512", {"IVs": self.IVs,"K":self.K})
         else:
-            self.IVs, self.K = pickled
+            self.IVs, self.K = pickled["IVs"], pickled["K"]
 
 
     def rxrxr(self, x, i1, i2, i3):

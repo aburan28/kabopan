@@ -10,7 +10,12 @@ from _sha2 import nroot_primes
 class sha384(sha512):
     def __init__(self):
         sha512.__init__(self)
-        self.IVs = nroot_primes(8, 16, 2, 64)
+        pickled = p.get_variables("sha384", ["IVs"])
+        if pickled is None:
+            self.IVs = nroot_primes(8, 16, 2, 64)
+            p.save_variables("sha384", {"IVs": self.IVs})
+        else:
+            self.IVs = pickled["IVs"]
 
     def digest(self):
         return sha512.digest(self)[:48]

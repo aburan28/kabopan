@@ -76,4 +76,4 @@ if pickled is None:
 
     pickle.save_variables("haval", {"K":K})
 else:
-    [K] = pickled
+    K = pickled["K"]
