@@ -6,6 +6,8 @@
 from md4 import *
 from _sha2 import nroot_primes
 
+import _pickle as p
+
 class sha512(md4):
     def __init__(self):
         md4.__init__(self)
@@ -15,11 +17,15 @@ class sha512(md4):
         self.padding_size_encoding_length = 128
         self.output_big_endianness = self.block_big_endianness = self.padding_big_endianness = True
 
-        # 64bits representation of fractional parts of square root of the 8th first primes
-        self.IVs = nroot_primes(0, 8, 2, 64)
-
-        # 64bits representation of fractional parts of cube root of the 80th first primes
-        self.K = nroot_primes(0, 80, 3, 64)
+        pickled = p.get_variables("sha512", ["IVs", "K"])
+        if pickled is None:
+            # 64bits representation of fractional parts of square root of the 8th first primes
+            self.IVs = nroot_primes(0, 8, 2, 64) 
+            # 64bits representation of fractional parts of cube root of the 80th first primes
+            self.K = nroot_primes(0, 80, 3, 64)
+            p.save_variables("sha512", {"IVs": self.IVs,"K":self.K})
+        else:
+            self.IVs, self.K = pickled
 
 
     def rxrxr(self, x, i1, i2, i3):
