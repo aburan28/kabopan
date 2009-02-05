@@ -1,6 +1,5 @@
 ﻿#summary Algorithms in this project
-#labels featured
-
+_in construction (incorrect and outdated)_
  * *lossless compression*
   * [http://code.google.com/p/kabopan/source/browse/trunk/lz77.py Lempel Ziv 77]
    * [http://code.google.com/p/kabopan/source/browse/trunk/lzss.py Lempel Ziv Storer Szymanski]
