@@ -5,7 +5,11 @@
 #
 #Kabopan (http://kabopan.corkami.com) public domain, readable, working pseudocode-style python
 
-
+try:
+    import psyco
+    psyco.run()
+except:
+    pass
 import _misc as m
 from md4 import *
 from _int import QWORD, BYTE, List
@@ -26,7 +30,7 @@ class tiger(md4):
         self.nb_pass = 3 # standard tiger uses 3 passes
         self.sboxes = self.S
         self.Sboxes = self.S[::-1]
-        #self.gen_const()
+        self.gen_const()
 
 
     def key_schedule(self, words):
@@ -81,45 +85,91 @@ class tiger(md4):
         for i in range(self.nb_pass):
             multiplier = [5,7][i] if 0 <= i <= 1 else 9
             self.pass_(bhvs, indexes >> i, multiplier, words)
+            #print words[0]
             words = self.key_schedule(words)
         return bhvs
 
     def gen_const(self):
         nb_passes = 5
         seed_string = "Tiger - A Fast New Hash Function, by Ross Anderson and Eli Biham"
-        words = m.as_words(seed_string, 512, 64, bigendian=True)
+        words = m.as_words(seed_string, 512, 64, bigendian=False)
+        self.ihvs = list(self.IVs)
+        print self.ihvs[0]
+        self.ihvs = self.rounds(words)
+        print self.ihvs[0]
+        import sys
+        sys.exit()
+#        print [str(i) for i in words]
+        print [str(i) for i in words]
         table = [list([DWORD(0) for i in range(1024)]) for j in range(2)]
+        #input: 1024 of 8 of char
+        #output : 2 of 1024 of dword
+        """
         for i in xrange(1024):
             for j in xrange(8):
                 current_iteration = i * 8 + j
-                i_ = current_iteration / 1024
                 j_ = current_iteration % 1024
+                i_ = current_iteration / (1024 * 2)
+                if (int(table[i_][j_] >> j) & 0xFF)  != 0:
+                    print "error",  i, j, "-", current_iteration, "-", i_, j_, (int(table[i_][j_] >> j) & 0xFF)
                 table[i_][j_] |= ((i & 0xFF) << j)
-                #print j_, i_, "%x" % ((i & 0xFF) << j), table[i_][j_]
+                    
+        print table[1][0]
         abc = 2
+        self.ihvs = self.IVs
         for cnt in range(nb_passes):
             for i in range(256):
                 for sb in xrange(0, 1024, 256):
                     abc += 1
                     if abc == 3:
                         abc = 0
-                        
+                        self.ihvs = self.rounds(words)
+                    for col in xrange(8):
+                        current_iteration = (sb + i) * 8 + col
+                        i_ = current_iteration / (1024 * 4)
+                        j_ = current_iteration % 1024
+                        sb2 = sb + self.ihvs[abc][col]
+                        current_iteration = sb2 * 8 + col
+                        i2_ = current_iteration / (1024 * 4)
+                        j2_ = current_iteration % 1024
+                        temp = (table[i_][j_] >> j) & 0xFF
+                        table[i_][j_], table[i2_][j2_] = table[i2_][j2_], table[i_][j_]
+        """
+        table_ch = [list([BYTE(0) for i in range(8)]) for j in range(1024)]
+        for i in xrange(1024):
+            for col in xrange(8):
+                table_ch[i][col] = BYTE(i & 0xff)
+        abc = 2
+        self.ihvs = list(self.IVs)
+        for cnt in range(nb_passes):
+            for i in range(256):
+                for sb in xrange(0, 1024, 256):
+                    abc += 1
+                    if abc == 3:
+                        abc = 0
+                        print self.ihvs[0]
+                        self.ihvs = self.rounds(words)
+                        print self.ihvs[0]
+                        print
+
+                    for col in xrange(8):
+                        i1 = sb + i
+                        i2 = sb + self.ihvs[abc][col]
+                        table_ch[i1][col] , table_ch[i2][col] = table_ch[i2][col] , table_ch[i1][col]
+        for i in xrange(2):
+            for col in xrange(8):
+                print table_ch[i][col],
+            print
+    
+        import pprint
+"""        for i in range(2):
+            for j in range(1024):
+                print str(table[i][j])
 #            out_index = [2, 1024]# 32
             #in_index = [1024, 8]# 8
-#            table[
-        """
-              if(abc == 3)
-                {
-                  abc = 0;
-                  tiger_compress(tempstr, state);
-                }
-              for(col=0; col<8; col++) {
-                  byte tmp = table_ch[sb+i][col];
-                  table_ch[sb+i][col] = table_ch[sb+state_ch[abc][col]][col];
-                  table_ch[sb+state_ch[abc][col]][col] = tmp;
-                }
-            }  
-        }"""
-
+"""
+tiger()
+import sys
+sys.exit()
 if __name__ == "__main__":
     import test.tiger_test
