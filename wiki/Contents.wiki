@@ -1,43 +1,39 @@
 ﻿#summary Algorithms in this project
-_in construction (incorrect and outdated)_
  * *lossless compression*
-  * [http://code.google.com/p/kabopan/source/browse/trunk/lz77.py Lempel Ziv 77]
-   * [http://code.google.com/p/kabopan/source/browse/trunk/lzss.py Lempel Ziv Storer Szymanski]
-   * [http://code.google.com/p/kabopan/source/browse/trunk/brieflz.py BriefLZ]
-   * [http://code.google.com/p/kabopan/source/browse/trunk/aplib.py aPLib]
-   * JCALG1
-  * [http://code.google.com/p/kabopan/source/browse/trunk/lz78.py Lempel Ziv 78]
-   * [http://code.google.com/p/kabopan/source/browse/trunk/lzw.py Lempel Ziv Welch]
-  * [http://code.google.com/p/kabopan/source/browse/trunk/rle.py Run-length encoding]
-  * LZO
-  * LZMA
-  * zlib
-  * bzip2
+  * Lempel Ziv 77
+   * Lempel Ziv Storer Szymanski
+   * BriefLZ
+   * aPLib
+   * JCALG1 (decompression only)
+  * Lempel Ziv 78
+   * Lempel Ziv Welch
+  * Run-length encoding
  * *transform*
-  * [http://code.google.com/p/kabopan/source/browse/trunk/bwt.py Burrows Wheeler]
-  * [http://code.google.com/p/kabopan/source/browse/trunk/mtf.py Move to front]
+  * Burrows Wheeler
+  * Move to front
  * *universal encoding*
   * unary
   * elias gamma, delta, omega
   * fibonacci
  * *entropy encoding*
-  * [http://code.google.com/p/kabopan/source/browse/trunk/sfc.py Shannon Fano]
-  * [http://code.google.com/p/kabopan/source/browse/trunk/huffman.py Huffman]
+  * Shannon Fano
+  * Huffman
   * Range
-  * Arithmetic
  * *encoding*
-  * [http://code.google.com/p/kabopan/source/browse/trunk/base.py Base16/Base32/Base64]
+  * Base16/Base32/Base64
+  * ascii85
+  * uuencode, xxencode
  * *cyclic redundancy check*
  * *checksum*
-  * flechter32
+  * fletcher32
   * adler32
  * *cryptographic hash/message digest*
-  * Haval
-  * MD2, MD4, MD5, MD6
-  * RIPEMD
-  * SHA-0, SHA-1, SHA-2
-  * Tiger
-  * WHIRLPOOL
+  * Merkle-Damgaard
+   * MD2, MD4, MD5
+   * RIPEMD (RIPEMD-128, RIPEMD-160, RIPEMD-256, RIPEMD-320)
+   * SHA (SHA-0, SHA-1), SHA-2 (SHA-224, SHA-256, SHA-384, SHA-512)
+   * Tiger
+   * HAS (HAS-160)
  * *Message Authentication Code*
  * *Pseudorandom Number Generator*
   * Mersenne twister
@@ -45,19 +41,8 @@ _in construction (incorrect and outdated)_
   * RC4
  * *block cipher*
   * Feistel Network
-  * Lucifer
-  * Data Encryption Standard - DES
-  * Triple DES
-  * Rijndael - AES
-  * Serpent
-  * Blowfish
-  * Twofish
-  * Threefish
-  * Tiny Encryption Algorithm - TEA
-  * XTEA
-  * XXTEA
-  * RC2, RC5, RC6
-  * Skein
+   * Tiny Encryption Algorithm - TEA
+   * XTEA
  * *substitution cipher*
   * alberti cipher disk
   * bellaso first and second
@@ -65,5 +50,3 @@ _in construction (incorrect and outdated)_
   * rot5, rot13, rot18, rot47
   * playfair
   * affine
-  * ascii85
-  * uuencode, xxencode
